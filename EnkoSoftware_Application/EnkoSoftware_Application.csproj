@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,14 +55,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Company.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Company.Designer.cs">
+      <DependentUpon>Company.cs</DependentUpon>
     </Compile>
+    <Compile Include="Details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Details.Designer.cs">
+      <DependentUpon>Details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EF_EnkoSoftware\City.cs">
+      <DependentUpon>EnkoSoftware.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_EnkoSoftware\CompanyRecord.cs">
+      <DependentUpon>EnkoSoftware.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_EnkoSoftware\EnkoSoftware.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnkoSoftware.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_EnkoSoftware\EnkoSoftware.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnkoSoftware.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF_EnkoSoftware\EnkoSoftware.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnkoSoftware.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EnkoSoftwareDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnkoSoftwareDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Implementations\GenericRepository.cs" />
+    <Compile Include="Model\CompanyRecordsViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IGenericRepository.cs" />
+    <Compile Include="Utilities\OnStartUp_AddRecords.cs" />
+    <Compile Include="Utilities\UtilityFunctions.cs" />
+    <EmbeddedResource Include="Company.resx">
+      <DependentUpon>Company.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Details.resx">
+      <DependentUpon>Details.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,6 +115,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EntityDeploy Include="EF_EnkoSoftware\EnkoSoftware.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EnkoSoftware.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EF_EnkoSoftware\EnkoSoftware.edmx.diagram">
+      <DependentUpon>EnkoSoftware.edmx</DependentUpon>
+    </None>
+    <None Include="EnkoSoftwareDataSet.xsc">
+      <DependentUpon>EnkoSoftwareDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EnkoSoftwareDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EnkoSoftwareDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EnkoSoftwareDataSet.xss">
+      <DependentUpon>EnkoSoftwareDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -75,6 +146,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="EF_EnkoSoftware\EnkoSoftware.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EnkoSoftware.Context.cs</LastGenOutput>
+      <DependentUpon>EnkoSoftware.edmx</DependentUpon>
+    </Content>
+    <Content Include="EF_EnkoSoftware\EnkoSoftware.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EnkoSoftware.edmx</DependentUpon>
+      <LastGenOutput>EnkoSoftware.cs</LastGenOutput>
+    </Content>
+    <Content Include="icons8-fehler-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
